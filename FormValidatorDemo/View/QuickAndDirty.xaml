@@ -1,0 +1,36 @@
+﻿<Page
+    x:Class="FormValidatorDemo.View.QuickAndDirty"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:FormValidatorDemo.View"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    xmlns:ViewModels="using:FormValidatorDemo.ViewModel"
+    xmlns:Converters="using:FormValidatorDemo.Converters">
+
+    <Page.Resources>
+        <Converters:BorderBrushOnErrorConverter x:Key="BorderBrushOnErrorConverter"/>
+        <Converters:BoolToVisibility x:Key="BoolToVisibility"/>
+    </Page.Resources>
+
+    <Page.DataContext>
+        <ViewModels:QuickAndDirtyViewModel x:Name="ViewModel"/>
+    </Page.DataContext>
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <ScrollViewer>
+            <StackPanel Padding="10">
+                <TextBox Header="Name*" Text="{Binding Name,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PlaceholderText="e.g. John Doe" Margin="0,5" InputScope="PersonalFullName" BorderBrush="{x:Bind ViewModel.IsNameError,Mode=OneWay,Converter={StaticResource BorderBrushOnErrorConverter}}"/>
+                <TextBlock Visibility="{x:Bind ViewModel.IsNameError,Mode=OneWay,Converter={StaticResource BoolToVisibility}}" Text="The name cannot be empty" Foreground="Red" HorizontalAlignment="Right"/>
+                <TextBox Header="Admin Number" Text="{Binding AdminNo,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PlaceholderText="e.g. 23Adkdf" Margin="0,5" BorderBrush="{x:Bind ViewModel.IsAdminNoError,Mode=OneWay,Converter={StaticResource BorderBrushOnErrorConverter}}"/>
+                <TextBox Header="Phone Number*" Text="{Binding MobileNo,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PlaceholderText="e.g. +328934598" Margin="0,5" BorderBrush="{x:Bind ViewModel.IsMobileNoError,Mode=OneWay,Converter={StaticResource BorderBrushOnErrorConverter}}"/>
+                <TextBox Header="Description*" Text="{Binding Description,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PlaceholderText="e.g. My Fav item" Margin="0,5" BorderBrush="{x:Bind ViewModel.IsDescriptionError,Mode=OneWay,Converter={StaticResource BorderBrushOnErrorConverter}}"/>
+                <TextBox Header="Lost Location*" Text="{Binding LostLocation,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PlaceholderText="e.g. Alaska" Margin="0,5" BorderBrush="{x:Bind ViewModel.IsLostlocationError,Mode=OneWay,Converter={StaticResource BorderBrushOnErrorConverter}}"/>
+                <DatePicker HorizontalAlignment="Stretch" Margin="0,5" Header="Date"/>
+                <TimePicker HorizontalAlignment="Stretch" Margin="0,5" Header="Time"/>
+                <Button Content="Validate" HorizontalAlignment="Center" Margin="0,5" Padding="5" Width="100" Click="{x:Bind ViewModel.ValidateValues}"/>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Page>

@@ -14,7 +14,6 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
-// The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
 namespace FormValidatorDemo
 {
@@ -40,7 +39,8 @@ namespace FormValidatorDemo
         private void ScenarioControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ListView scenarioListBox = sender as ListView;
-            if (scenarioListBox.SelectedItem is Scenario s)
+            Scenario s = scenarioListBox.SelectedItem as Scenario;
+            if (s != null)
             {
                 ScenarioFrame.Navigate(s.ClassType);
                 if (Window.Current.Bounds.Width < 640)

@@ -8,7 +8,8 @@ namespace FormValidatorDemo.Converters
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            if (value is bool isError && isError)
+            bool isError = (bool)value;
+            if (isError)
                 return new SolidColorBrush(Windows.UI.Colors.Red);
             return new SolidColorBrush(Windows.UI.Colors.Gray);
         }

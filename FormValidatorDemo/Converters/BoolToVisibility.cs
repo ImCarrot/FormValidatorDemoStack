@@ -7,7 +7,8 @@ namespace FormValidatorDemo.Converters
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            if (value is bool isError && isError)
+            bool isError = (bool)value;
+            if (isError)
                 return Windows.UI.Xaml.Visibility.Visible;
             return Windows.UI.Xaml.Visibility.Collapsed;
         }

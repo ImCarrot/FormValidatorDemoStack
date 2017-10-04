@@ -13,7 +13,8 @@ namespace FormValidatorDemo.UserControls
 
         private void control_LostFocus(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
-            if (this.DataContext is ViewModel.TextFieldInputControlViewModel viewModel)
+            ViewModel.TextFieldInputControlViewModel viewModel = this.DataContext as ViewModel.TextFieldInputControlViewModel;
+            if (viewModel != null)
             {
                 viewModel.ValidateData();
             }

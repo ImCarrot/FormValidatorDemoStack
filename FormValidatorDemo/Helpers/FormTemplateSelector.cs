@@ -10,9 +10,9 @@ namespace FormValidatorDemo.Helpers
 
         protected override DataTemplate SelectTemplateCore(object item, DependencyObject container)
         {
-            if (item is ViewModel.DateTimeFieldInputViewModel)
+            if (item as ViewModel.DateTimeFieldInputViewModel != null)
                 return TemplateWithDate;
-            if (item is ViewModel.TextFieldInputControlViewModel)
+            if (item as ViewModel.TextFieldInputControlViewModel != null)
                 return TemplateWithText;
 
             return base.SelectTemplateCore(item, container);

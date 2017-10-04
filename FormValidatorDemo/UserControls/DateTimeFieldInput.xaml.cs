@@ -14,7 +14,8 @@ namespace FormValidatorDemo.UserControls
 
         private void control_LostFocus(object sender, RoutedEventArgs e)
         {
-            if (this.DataContext is ViewModel.DateTimeFieldInputViewModel viewModel)
+            ViewModel.DateTimeFieldInputViewModel viewModel = this.DataContext as ViewModel.DateTimeFieldInputViewModel;
+            if (viewModel != null)
             {
                 viewModel.ValidateData();
             }

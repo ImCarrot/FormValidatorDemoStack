@@ -19,15 +19,21 @@ namespace FormValidatorDemo.View
             this.InitializeComponent();
         }
 
-        internal ObservableCollection<ComponentModel.IFormControl> FormFields => new ObservableCollection<ComponentModel.IFormControl>(new List<ComponentModel.IFormControl>()
+        internal ObservableCollection<ComponentModel.IFormControl> FormFields
         {
-            new ViewModel.TextFieldInputControlViewModel(){HeaderName = "Name",PlaceholderText="e.g. John Doe",IsMandatory = true },
-            new ViewModel.TextFieldInputControlViewModel(){HeaderName = "Admin No" , PlaceholderText = "e.g. ABC123"},
-            new ViewModel.TextFieldInputControlViewModel(){HeaderName = "Phone" , PlaceholderText = "e.g. +32538349182" ,IsMandatory = true,MatchingPattern = @"^[\+]?[1-9]{1,3}\s?[0-9]{6,11}$"},
-            new ViewModel.TextFieldInputControlViewModel(){HeaderName = "Item Description", PlaceholderText = "e.g. My Fav Item",IsMandatory = true },
-            new ViewModel.TextFieldInputControlViewModel(){HeaderName = "Location Lost", PlaceholderText = "e.g. Alaska",IsMandatory = true },
-            new ViewModel.DateTimeFieldInputViewModel(){ HeaderName = "Date Lost",IsMandatory = true}
-        });
+            get
+            {
+                return new ObservableCollection<ComponentModel.IFormControl>(new List<ComponentModel.IFormControl>()
+                {
+                    new ViewModel.TextFieldInputControlViewModel(){HeaderName = "Name",PlaceholderText="e.g. John Doe",IsMandatory = true },
+                    new ViewModel.TextFieldInputControlViewModel(){HeaderName = "Admin No" , PlaceholderText = "e.g. ABC123"},
+                    new ViewModel.TextFieldInputControlViewModel(){HeaderName = "Phone" , PlaceholderText = "e.g. +32538349182" ,IsMandatory = true,MatchingPattern = @"^[\+]?[1-9]{1,3}\s?[0-9]{6,11}$"},
+                    new ViewModel.TextFieldInputControlViewModel(){HeaderName = "Item Description", PlaceholderText = "e.g. My Fav Item",IsMandatory = true },
+                    new ViewModel.TextFieldInputControlViewModel(){HeaderName = "Location Lost", PlaceholderText = "e.g. Alaska",IsMandatory = true },
+                    new ViewModel.DateTimeFieldInputViewModel(){ HeaderName = "Date Lost",IsMandatory = true}
+                });
+            }
+        }
 
         private async void ValidateContent(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {

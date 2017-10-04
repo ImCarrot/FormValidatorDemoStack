@@ -25,7 +25,7 @@ namespace FormValidatorDemo.Model
             get { return itemDescription; }
             private set
             {
-                if (string.IsNullOrEmpty(value?.Trim()))
+                if (value == null || string.IsNullOrEmpty(value.Trim()))
                     throw new ArgumentNullException("Please enter your item description.");
                 itemDescription = value;
             }
@@ -38,7 +38,7 @@ namespace FormValidatorDemo.Model
             get { return locationLost; }
             private set
             {
-                if (string.IsNullOrEmpty(value?.Trim()))
+                if (value == null || string.IsNullOrEmpty(value.Trim()))
                     throw new ArgumentNullException("Please enter the location.");
                 locationLost = value;
             }
@@ -51,7 +51,7 @@ namespace FormValidatorDemo.Model
             get { return personName; }
             private set
             {
-                if (string.IsNullOrEmpty(value?.Trim()))
+                if (value == null || string.IsNullOrEmpty(value.Trim()))
                     throw new ArgumentNullException("Please enter your name.");
                 personName = value;
             }
@@ -64,7 +64,7 @@ namespace FormValidatorDemo.Model
             get { return contactNo; }
             private set
             {
-                if (string.IsNullOrEmpty(value?.Trim()))
+                if (value == null || string.IsNullOrEmpty(value.Trim()))
                     throw new ArgumentNullException("Please enter your contact no.");
                 else if (!Regex.IsMatch(contactNo, @"^[\+]?[1-9]{1,3}\s?[0-9]{6,11}$"))
                     throw new FormatException("Please enter a valid phone number.");
@@ -79,7 +79,7 @@ namespace FormValidatorDemo.Model
             get { return adminNo; }
             private set
             {
-                if (string.IsNullOrEmpty(value?.Trim()))
+                if (value == null || string.IsNullOrEmpty(value.Trim()))
                     throw new ArgumentNullException("Please enter your admin no.");
                 else if (!Regex.IsMatch(adminNo, @"^[1-9]{1}[0-9]{5}[a-zA-Z]{1}$"))
                     throw new FormatException("Please enter a valid admin no.");
@@ -101,7 +101,13 @@ namespace FormValidatorDemo.Model
         }
 
 
-        public DateTime CreatedDate => DateTime.Now.Date;
+        public DateTime CreatedDate
+        {
+            get
+            {
+                return DateTime.Now.Date;
+            }
+        }
 
         /// <summary>
         /// Handles the data insertion and error handling.
